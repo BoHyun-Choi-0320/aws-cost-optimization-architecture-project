@@ -19,12 +19,6 @@ resource "aws_subnet" "public" {
   cidr_block = var.public_subnet_cidrs[count.index]
   availability_zone = var.azs[count.index]
   map_public_ip_on_launch = true
-
-  tags = {
-    Name = "${var.name_prefix}-public-subnet-${count.index+1}"
-    "kubernetes.io/cluster/${var.eks_cluster_name}" ="owned"
-    "kubernetes.io/role/elb"="1"
-  }
 }
 
 # Private Subnets
